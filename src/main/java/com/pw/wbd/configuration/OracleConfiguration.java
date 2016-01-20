@@ -1,4 +1,4 @@
-package com.pw.wbd;
+package com.pw.wbd.configuration;
 
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.context.annotation.Bean;
