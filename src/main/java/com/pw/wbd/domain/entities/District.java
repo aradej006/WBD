@@ -42,4 +42,14 @@ public class District {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getDesc(){return toString();}
+
+    @Override
+    public String toString() {
+        return "District{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

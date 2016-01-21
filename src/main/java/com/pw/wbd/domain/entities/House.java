@@ -115,4 +115,16 @@ public class House {
     public void setBuilding(Building building) {
         this.building = building;
     }
+
+    public String getDesc(){
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "area=" + area +
+                ", landArea=" + landArea +
+                '}';
+    }
 }

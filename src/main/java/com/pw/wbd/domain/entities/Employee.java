@@ -31,7 +31,6 @@ public class Employee {
     private BigDecimal phone;
     @Size(max = 15)
     private String secondname;
-    @Size(max = 30)
     private BigInteger pesel;
 
     public int getId() {
@@ -96,5 +95,9 @@ public class Employee {
 
     public void setPesel(BigInteger pesel) {
         this.pesel = pesel;
+    }
+
+    public String getDesc(){
+        return firstname + " " + lastname + " " + position;
     }
 }

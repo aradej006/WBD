@@ -18,7 +18,6 @@ public class Flat {
 
     private double area;
     private int flor;
-    @Size(max = 30)
     private double pricePerMeter;
     @Size(max = 30)
     private String condition;
@@ -90,5 +89,18 @@ public class Flat {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public String getDesc(){
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Flat{" +
+                "area=" + area +
+                ", flor=" + flor +
+                ", pricePerMeter=" + pricePerMeter +
+                '}';
     }
 }

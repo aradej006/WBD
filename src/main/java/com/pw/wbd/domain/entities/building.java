@@ -110,4 +110,13 @@ public class Building {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    public String getDesc(){
+        String desc = city;
+        if(street!=null) desc += "," + street;
+        desc += "," + buildingNumber;
+        desc += "," + district;
+        desc += "," + postCode;
+        return desc;
+    }
 }

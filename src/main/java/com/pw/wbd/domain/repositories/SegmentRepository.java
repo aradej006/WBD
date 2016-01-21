@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by arade on 20-Jan-16.
  */
-public interface SegementRepository extends JpaRepository<Segment,Integer> {
+public interface SegmentRepository extends JpaRepository<Segment,Integer> {
 }

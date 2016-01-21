@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div>
+        <h2>Subdivision List
+            <button class="btn btn-default pull-right" onclick="location.href='/subdivision/new'"> Add</button>
+        </h2>
+        <table class="table table-striped" th:if="${not #lists.isEmpty(#objects)}">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="subdivision : ${objects}">
+                <td th:text="${subdivision.id}"><a href="/subdivision/${subdivision.id}">Id</a></td>
+                <td th:text="${subdivision.name}">Firstname</td>
+                <td th:text="${subdivision.city}">Firstname</td>
+                <td><a th:href="${'/subdivision/get/' + subdivision.id}">View</a></td>
+                <td><a th:href="${'/subdivision/edit/' + subdivision.id}">Edit</a></td>
+                <td><a th:href="${'/subdivision/delete/' + subdivision.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

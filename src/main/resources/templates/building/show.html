@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Building Details</h2>
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Building Id:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.id}"></p></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">city:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.city}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">street:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.street}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">florQuantity:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.florQuantity}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">buildingNumber:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.buildingNumber}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">postCode:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.postCode}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">district:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.district}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">type:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.type}"></p>
+                </div>
+            </div>
+            <div class="form-group" th:if="${object.project!=null}">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/project/get/' + object.project.id}">project:</a></label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.project.getDesc()}"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

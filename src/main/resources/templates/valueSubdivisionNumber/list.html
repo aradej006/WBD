@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div>
+        <h2>ValueSubdivisionNumber List
+            <button class="btn btn-default pull-right" onclick="location.href='/valueSubdivisionNumber/new'"> Add</button>
+        </h2>
+        <table class="table table-striped" th:if="${not #lists.isEmpty(#objects)}">
+            <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="valueSubdivisionNumber : ${objects}">
+                <td th:text="${valueSubdivisionNumber.id}"><a href="/valueSubdivisionNumber/${valueSubdivisionNumber.id}">Id</a></td>
+                <td th:text="${valueSubdivisionNumber.value}">Firstname</td>
+                <td><a th:href="${'/valueSubdivisionNumber/get/' + valueSubdivisionNumber.id}">View</a></td>
+                <td><a th:href="${'/valueSubdivisionNumber/edit/' + valueSubdivisionNumber.id}">Edit</a></td>
+                <td><a th:href="${'/valueSubdivisionNumber/delete/' + valueSubdivisionNumber.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

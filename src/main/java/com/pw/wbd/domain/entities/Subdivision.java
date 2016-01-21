@@ -54,4 +54,14 @@ public class Subdivision {
     public void setDistrict(District district) {
         this.district = district;
     }
+
+    public String getDesc(){return toString();}
+
+    @Override
+    public String toString() {
+        return "Subdivision{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

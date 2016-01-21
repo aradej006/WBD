@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>OfferStatus Details</h2>
+    <div>
+        <form class="form-horizontal" th:object="${object}" th:action="@{/offerStatus}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">status:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{status}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">customer:</label>
+                <div class="col-sm-10">
+                    <select class="form-control" th:field="*{customer}">
+                        <option th:each="b : ${customers}" th:value="${b.id}" th:text="${b.getDesc()}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">offer:</label>
+                <div class="col-sm-10">
+                    <select class="form-control" th:field="*{offer}">
+                        <option th:each="b : ${offers}" th:value="${b.id}" th:text="${b.getDesc()}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -78,4 +78,17 @@ public class Segment {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public String getDesc(){
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "pricePerMeter=" + pricePerMeter +
+                ", area=" + area +
+                ", flor=" + flor +
+                '}';
+    }
 }

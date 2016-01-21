@@ -75,4 +75,16 @@ public class Offer {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getDesc() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

@@ -83,4 +83,5 @@ public class Agreement {
     public void setType(String type) {
         this.type = type;
     }
+
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Segment Details</h2>
+    <div>
+        <form class="form-horizontal" th:object="${object}" th:action="@{/segment}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">area:</label>
+                <div class="col-sm-10">
+                    <input type="text" min="0" class="form-control" th:field="*{area}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">flor:</label>
+                <div class="col-sm-10">
+                    <input type="text" min="0" class="form-control" th:field="*{flor}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">pricePerMeter:</label>
+                <div class="col-sm-10">
+                    <input type="text" min="0" class="form-control" th:field="*{pricePerMeter}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Building:</label>
+                <div class="col-sm-10">
+                    <select class="form-control" th:field="*{building}">
+                        <option th:each="b : ${buildings}" th:value="${b.id}" th:text="${b.getDesc()}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">employee:</label>
+                <div class="col-sm-10">
+                    <select class="form-control" th:field="*{employee}">
+                        <option th:value="${null}">----SELECT----</option>
+                        <option th:each="b : ${employees}" th:value="${b.id}" th:text="${b.getDesc()}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

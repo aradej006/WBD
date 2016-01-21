@@ -117,4 +117,8 @@ public class Customer {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
+
+    public String getDesc(){
+        return firstname + " " + lastname + " " + getPesel();
+    }
 }

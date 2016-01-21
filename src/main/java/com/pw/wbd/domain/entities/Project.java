@@ -45,4 +45,6 @@ public class Project {
     public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
+
+    public String getDesc(){return name;}
 }

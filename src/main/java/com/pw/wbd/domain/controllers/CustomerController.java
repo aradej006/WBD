@@ -1,6 +1,5 @@
 package com.pw.wbd.domain.controllers;
 
-import com.pw.wbd.domain.CustomerService;
 import com.pw.wbd.domain.entities.Customer;
 import com.pw.wbd.domain.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,32 +22,32 @@ public class CustomerController {
 
     @RequestMapping("/customer/new")
     public String newCustomer(Model model) {
-        model.addAttribute("customer", new Customer());
-        return "customerform";
+        model.addAttribute("object", new Customer());
+        return "customer/form";
     }
 
     @RequestMapping(value = "customer", method = RequestMethod.POST)
     public String saveCustomer(Customer customer) {
         customerRepository.save(customer);
-        return "redirect:/customer/" + customer.getId();
+        return "redirect:/customer/get/" + customer.getId();
     }
 
-    @RequestMapping("customer/{id}")
+    @RequestMapping("customer/get/{id}")
     public String showCustomer(@PathVariable Integer id, Model model) {
-        model.addAttribute("customer", customerRepository.findOne(id));
-        return "customershow";
+        model.addAttribute("object", customerRepository.findOne(id));
+        return "customer/show";
     }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("customers", customerRepository.findAll());
-        return "customers";
+        model.addAttribute("objects", customerRepository.findAll());
+        return "customer/list";
     }
 
     @RequestMapping("customer/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("customer", customerRepository.getOne(id));
-        return "customerform";
+        model.addAttribute("object", customerRepository.getOne(id));
+        return "customer/form";
     }
 
     @RequestMapping("customer/delete/{id}")

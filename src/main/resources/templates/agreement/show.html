@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Agreement Details</h2>
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Agreement Id:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.id}"></p></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">city:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.type}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/customer/get/' + object.customer.id}">customer</a>:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.customer.getDesc()}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/employee/get/' + object.employee.id}">employee</a>:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.employee.getDesc()}"></p>
+                </div>
+            </div>
+            <div class="form-group" th:if="${object.house!=null}">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/house/get/' + object.house.id}">house</a>:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.house.getDesc()}"></p>
+                </div>
+            </div>
+            <div class="form-group" th:if="${object.segment!=null}">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/segment/get/' + object.segment.id}">segment</a>:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.segment.getDesc()}"></p>
+                </div>
+            </div>
+            <div class="form-group" th:if="${object.flat!=null}">
+                <label class="col-sm-2 control-label"><a href="#" th:href="${'/flat/get/' + object.flat.id}">flat:</a></label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${object.flat.getDesc()}"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

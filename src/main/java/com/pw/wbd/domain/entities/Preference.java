@@ -32,4 +32,14 @@ public class Preference {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDesc(){return toString();}
+
+    @Override
+    public String toString() {
+        return "Preference{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
