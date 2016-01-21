@@ -13,7 +13,7 @@
         <h2>Subdivision List
             <button class="btn btn-default pull-right" onclick="location.href='/subdivision/new'"> Add</button>
         </h2>
-        <table class="table table-striped" th:if="${not #lists.isEmpty(#objects)}">
+        <table class="table table-striped" th:if="${not #lists.isEmpty(objects)}">
             <tr>
                 <th>Id</th>
                 <th>Name</th>

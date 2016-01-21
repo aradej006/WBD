@@ -2,6 +2,7 @@ package com.pw.wbd.domain.controllers;
 
 import com.pw.wbd.domain.entities.Developer;
 import com.pw.wbd.domain.repositories.DeveloperRepository;
+import com.pw.wbd.domain.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,8 @@ public class DeveloperController {
 
     @RequestMapping("developer/get/{id}")
     public String showDeveloper(@PathVariable Integer id, Model model) {
-        model.addAttribute("object", developerRepository.findOne(id));
+        Developer dev = developerRepository.findOne(id);
+        model.addAttribute("object", dev);
         return "developer/show";
     }
 
@@ -45,13 +47,13 @@ public class DeveloperController {
     }
 
     @RequestMapping("developer/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model){
+    public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("object", developerRepository.getOne(id));
         return "developer/form";
     }
 
     @RequestMapping("developer/delete/{id}")
-    public String delete(@PathVariable Integer id){
+    public String delete(@PathVariable Integer id) {
         developerRepository.delete(id);
         return "redirect:/developers";
     }
