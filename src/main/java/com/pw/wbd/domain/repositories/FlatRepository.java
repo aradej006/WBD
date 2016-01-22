@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface FlatRepository extends JpaRepository<Flat, Integer> {
 
+    List<Flat> findByPricePerMeterBetweenAndAreaBetweenAndFlorBetweenAndBuilding_District(double startPrice, double endPrice,
+                                                                                            double startArea, double endArea,int startFlor, int endFlor, String district);
 
 
 }

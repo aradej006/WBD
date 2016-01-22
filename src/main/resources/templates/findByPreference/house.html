@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <h2>Match Houses
+    </h2>
+    <table class="table table-striped" th:if="${not #lists.isEmpty(houses)}">
+        <tr>
+            <th>Id</th>
+            <th>area</th>
+            <th>landArea</th>
+            <th>pricePerMeter</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="obj : ${houses}">
+            <td th:text="${obj.id}"><a href="/house/${house.id}">Id</a></td>
+            <td th:text="${obj.area}">area</td>
+            <td th:text="${obj.landArea}">flor</td>
+            <td th:text="${obj.pricePerMeter}">pricePerMeter</td>
+            <td><a th:href="${'/house/get/' + obj.id}">View</a></td>
+            <td><a th:href="${'/house/edit/' + obj.id}">Edit</a></td>
+            <td><a th:href="${'/house/delete/' + obj.id}">Delete</a></td>
+        </tr>
+    </table>
+    <h2>Preferences</h2>
+    <table class="table table-striped" th:if="${not #lists.isEmpty(districts)}">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>startPrice</td>
+            <td th:text="${startPrice}"></td>
+        </tr>
+        <tr>
+            <td>endPrice</td>
+            <td th:text="${endPrice}"></td>
+        </tr>
+        <tr>
+            <td>startLandArea</td>
+            <td th:text="${startLandArea}"></td>
+        </tr>
+        <tr>
+            <td>endLandArea</td>
+            <td th:text="${endLandArea}"></td>
+        </tr>
+        <tr>
+            <td>startArea</td>
+            <td th:text="${startArea}"></td>
+        </tr>
+        <tr>
+            <td>endArea</td>
+            <td th:text="${endArea}"></td>
+        </tr>
+        <tr th:each="obj : ${districts}">
+            <td>District</td>
+            <td th:text="${obj.value}">area</td>
+        </tr>
+    </table>
+
+</div>
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</body>
+</html>

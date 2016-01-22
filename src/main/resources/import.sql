@@ -17,6 +17,9 @@ insert into preference (id,name)values(4,'Metraż');
 insert into preference (id,name)values(5,'Miejsce Parkingowe');
 insert into preference (id,name)values(6,'Galerie Handlowe');
 insert into preference (id,name)values(7,'Park');
+insert into preference (id,name)values(8,'District');
+insert into preference (id,name)values(9,'Ilość Pokoii');
+insert into preference (id,name)values(10,'Metraż Działki');
 
 insert into customer (id, service_type, sales_type,service_state,firstname,lastname,email,phone,secondname,pesel)values(1,null,'Wynajem','W toku','Adrian','Radej','aradej006@gmail.com',000000000,'Mateusz',111111111);
 insert into customer (id, service_type, sales_type,service_state,firstname,lastname,email,phone,secondname,pesel)values(2,null,'Kupno','Zakończono','Bernadetta','Wąsiewicz','asdad@gmail.com',111111111,null,222222222);
@@ -50,13 +53,31 @@ insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(2,2,n
 insert into offer_Status (id,status,customer_id,offer_id)values(1,'W toku',1,1);
 insert into offer_Status (id,status,customer_id,offer_id)values(2,'Zakończono',2,2);
 
-insert into value_customer_text (id,customer_id,preference_id,value)values(1,1,5,'Tak');
-insert into value_customer_number (id,customer_id,preference_id,value)values(2,1,4,50.00);
-insert into value_customer_number (id,customer_id,preference_id,value)values(3,1,4,80.00);
+insert into value_customer_text (id,customer_id,preference_id,value)values(2,2,5,'Nie');
+insert into value_customer_number (id,customer_id,preference_id,value)values(5,2,1,3);
+insert into value_customer_number (id,customer_id,preference_id,value)values(6,2,1,13);
+insert into value_customer_number (id,customer_id,preference_id,value)values(7,2,3,3000.00);
+insert into value_customer_number (id,customer_id,preference_id,value)values(8,2,3,16000.00);
+insert into value_customer_number (id,customer_id,preference_id,value)values(9,2,4,40.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(10,2,4,200.0);
+insert into value_customer_text (id,customer_id,preference_id,value)values(5,2,8,'Mokotów');
+insert into value_customer_text (id,customer_id,preference_id,value)values(6,2,8,'Centrum');
+insert into value_customer_text (id,customer_id,preference_id,value)values(7,2,8,'Żoliborz');
+insert into value_customer_number (id,customer_id,preference_id,value)values(14,2,10,20.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(15,2,10,200.0);
 
-insert into value_customer_text (id,customer_id,preference_id,value)values(4,2,5,'Nie');
-insert into value_customer_number (id,customer_id,preference_id,value)values(5,2,3,6000.00);
-insert into value_customer_number (id,customer_id,preference_id,value)values(6,2,3,7500.00);
+insert into value_customer_text (id,customer_id,preference_id,value)values(16,5,2,'Nie');
+insert into value_customer_number (id,customer_id,preference_id,value)values(17,1,1,10);
+insert into value_customer_number (id,customer_id,preference_id,value)values(18,1,1,12);
+insert into value_customer_number (id,customer_id,preference_id,value)values(19,1,3,5000.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(20,1,3,12000.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(21,1,4,40.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(22,1,4,200.0);
+insert into value_customer_text (id,customer_id,preference_id,value)values(23,1,8,'Mokotów');
+insert into value_customer_text (id,customer_id,preference_id,value)values(24,1,8,'Żoliborz');
+insert into value_customer_number (id,customer_id,preference_id,value)values(26,1,10,20.0);
+insert into value_customer_number (id,customer_id,preference_id,value)values(127,1,10,200.0);
+
 
 insert into value_district_text (id,district_id,preference_id,value)values(1,1,6,'Galeria Mokotów');
 insert into value_district_text (id,district_id,preference_id,value)values(2,1,6,'BlueCity');
@@ -64,6 +85,29 @@ insert into value_district_text (id,district_id,preference_id,value)values(2,1,6
 insert into value_subdivision_text (id,subdivision_id,preference_id,value)values(1,2,2,'Nie');
 insert into value_subdivision_text (id,subdivision_id,preference_id,value)values(2,1,7,'Tak');
 insert into value_subdivision_number (id,subdivision_id,preference_id,value)values(3,1,2,15);
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
+select hibernate_sequence.nextval from dual;
 select hibernate_sequence.nextval from dual;
 select hibernate_sequence.nextval from dual;
 select hibernate_sequence.nextval from dual;

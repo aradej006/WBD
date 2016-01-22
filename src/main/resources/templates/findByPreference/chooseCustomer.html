@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    <div class="container-fluid">
+        <table class="table table-striped" th:if="${not #lists.isEmpty(customers)}">
+            <tr>
+                <th>Id</th>
+                <th>Desc</th>
+                <th>Flat</th>
+                <th>Segment</th>
+                <th>House</th>
+            </tr>
+            <tr th:each="obj : ${customers}">
+                <td th:text="${obj.id}"><a href="/offer/${offer.id}">Id</a></td>
+                <td th:text="${obj.getDesc()}">City</td>
+                <td><a th:href="${'/findByPreference/flat/' + obj.id}">Flat</a></td>
+                <td><a th:href="${'/findByPreference/segment/' + obj.id}">Segment</a></td>
+                <td><a th:href="${'/findByPreference/house/' + obj.id}">House</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</body>
+</html>
