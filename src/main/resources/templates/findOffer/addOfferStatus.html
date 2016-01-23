@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>WBD 15Z</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <script>
+        var change = function(){
+            var status = $('#input').val();
+            var u = $('#href').attr('href').split('/');
+            var url = '/'+u[1]+'/'+u[2]+'/'+u[3]+'/'+u[4]+'/'+u[5]+'/'+status;
+            console.log(url);
+            $('#href').attr('href', url);
+        };
+    </script>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    <div class="container-fluid">
+        <table class="table table-striped" th:if="${not #lists.isEmpty(data)}">
+            <tr>
+                <th>Id</th>
+                <th>Desc</th>
+                <th>Add Status</th>
+            </tr>
+            <tr th:each="obj : ${data}">
+                <td th:text="${obj.id}"><a href="/flat/${flat.id}">Id</a></td>
+                <td th:text="${obj.getDesc()}">area</td>
+                <td><a id="href" th:href="${'/findOffer/' + customerId +'/offer/' + obj.id +'/add/' + status}">Add</a></td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">satus:</label>
+            <div class="col-sm-10">
+                <input id="input" type="text" onchange="change()" class="form-control" th:value="${status}"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</body>
+</html>

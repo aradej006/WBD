@@ -29,7 +29,7 @@ insert into employee (id,position,firstname, lastname,email,phone,secondname,pes
 
 insert into building (id,city,street,building_Number,post_code,district, flor_Quantity, type, project_id)values(1,'Warszawa','Marzanny','5','02-649','Mokotów','4','Nieremontowany',null);
 insert into building (id,city,street,building_Number,post_code,district, flor_Quantity, type, project_id)values(2,'Warszawa','Mickiewicza','72','00-111','Żoliborz','18','Nowy',null);
-insert into building (id,city,street,building_Number,post_code,district, flor_Quantity, type, project_id)values(3,'Warszawa','Emili Plater','5','00-123','Centrum','1','Do remontu',null);
+insert into building (id,city,street,building_Number,post_code,district, flor_Quantity, type, project_id)values(3,'Warszawa','Emili Plater','5','00-123','Centrum','1','Do remontu',1);
 insert into building (id,city,street,building_Number,post_code,district, flor_Quantity, type, project_id)values(4,'Warszawa','Aleja Jana Pawla','72','01-456','Żoliborz','10','W budowie',1);
 
 insert into segment (id,area,price_Per_Meter,building_id,employee_id,flor, rooms_quantity)values(1,45.22,'7500',1,1,3,3);
@@ -39,6 +39,9 @@ insert into segment (id,area,price_Per_Meter,building_id,employee_id,flor, rooms
 insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(1,45.84,11,'7894','Wyremontowany',2,1,2);
 insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(2,78.46,13,'4862','Do remontu',2,1,3);
 insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(3,108.56,15,'9999','Apartament',2,2,4);
+insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(4,38.15,5,'6754','Wyremontowany',4,1,2);
+insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(5,48.20,4,'7656','Do remontu',4,1,3);
+insert into flat (id,area,flor,price_per_meter,condition,building_id, employee_id, rooms_quantity)values(6,59.90,6,'6564','Apartament',4,2,4);
 
 insert into house (id,land_area, area, price_per_meter, state,employee_id, garage, playground, building_id,rooms_quantity)values(1,195.23,80.23,'15000','Nowy',1,'Tak','Nie',3,3);
 insert into house (id,land_area, area, price_per_meter, state,employee_id, garage, playground, building_id,rooms_quantity)values(2,100,50.23,'13000','Do remontu',2,'Nie','Nie',3,3);
@@ -49,6 +52,10 @@ insert into agreement (id, employee_id,customer_id,flat_id,house_id,type,segment
 
 insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(1,1,1,null,'Zainteresowany',null);
 insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(2,2,null,2,'Nieodpowiednie',null);
+insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(3,1,4,null,'W Budowie',null);
+insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(4,2,5,null,'Dostępne',null);
+insert into offer (id, employee_id,flat_id,house_id,type,segment_id)values(5,2,6,null,'Remotnt',null);
+
 
 insert into offer_Status (id,status,customer_id,offer_id)values(1,'W toku',1,1);
 insert into offer_Status (id,status,customer_id,offer_id)values(2,'Zakończono',2,2);
