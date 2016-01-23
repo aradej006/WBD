@@ -28,10 +28,10 @@ public class Employee {
     @Size(max = 30)
     private String email;
 
-    private BigDecimal phone;
+    private String phone;
     @Size(max = 15)
     private String secondname;
-    private BigInteger pesel;
+    private String pesel;
 
     public int getId() {
         return id;
@@ -73,11 +73,19 @@ public class Employee {
         this.email = email;
     }
 
-    public BigDecimal getPhone() {
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -87,14 +95,6 @@ public class Employee {
 
     public void setSecondname(String secondname) {
         this.secondname = secondname;
-    }
-
-    public BigInteger getPesel() {
-        return pesel;
-    }
-
-    public void setPesel(BigInteger pesel) {
-        this.pesel = pesel;
     }
 
     public String getDesc(){

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -51,6 +55,34 @@ public class ValueCustomerTextController {
     @RequestMapping(value = "/valueCustomerTexts", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", valueCustomerTextRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueCustomerText.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "valueCustomerText/list";
+    }
+
+    @RequestMapping(value = "/valueCustomerTexts/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<ValueCustomerText> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(valueCustomerTextRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("customer")){
+            objects = valueCustomerTextRepository.findByCustomer_Id(Integer.parseInt(value));
+        }else if(attribute.equals("preference")){
+            objects = valueCustomerTextRepository.findByPreference_Id(Integer.parseInt(value));
+        }else if(attribute.equals("value")){
+            objects = valueCustomerTextRepository.findByValue(value);
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueCustomerText.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "valueCustomerText/list";
     }
 

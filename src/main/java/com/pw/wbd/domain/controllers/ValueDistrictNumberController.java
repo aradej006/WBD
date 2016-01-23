@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -53,8 +57,37 @@ public class ValueDistrictNumberController {
     @RequestMapping(value = "/valueDistrictNumbers", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", valueDistrictNumberRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueDistrictNumber.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "valueDistrictNumber/list";
     }
+
+    @RequestMapping(value = "/valueDistrictNumbers/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<ValueDistrictNumber> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(valueDistrictNumberRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("district")){
+            objects = valueDistrictNumberRepository.findByDistrict_Id(Integer.parseInt(value));
+        }else if(attribute.equals("preference")){
+            objects = valueDistrictNumberRepository.findByPreference_Id(Integer.parseInt(value));
+        }else if(attribute.equals("value")){
+            objects = valueDistrictNumberRepository.findByValue(Double.parseDouble(value));
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueDistrictNumber.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "valueDistrictNumber/list";
+    }
+
 
     @RequestMapping("valueDistrictNumber/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){

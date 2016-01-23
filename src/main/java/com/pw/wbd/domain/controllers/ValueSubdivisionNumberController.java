@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -53,6 +57,34 @@ public class ValueSubdivisionNumberController {
     @RequestMapping(value = "/valueSubdivisionNumbers", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", valueSubdivisionNumberRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueSubdivisionNumber.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "valueSubdivisionNumber/list";
+    }
+
+    @RequestMapping(value = "/valueSubdivisionNumbers/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<ValueSubdivisionNumber> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(valueSubdivisionNumberRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("subdivision")){
+            objects = valueSubdivisionNumberRepository.findBySubdivision_Id(Integer.parseInt(value));
+        }else if(attribute.equals("preference")){
+            objects = valueSubdivisionNumberRepository.findByPreference_Id(Integer.parseInt(value));
+        }else if(attribute.equals("value")){
+            objects = valueSubdivisionNumberRepository.findByValue(Double.parseDouble(value));
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : ValueSubdivisionNumber.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "valueSubdivisionNumber/list";
     }
 

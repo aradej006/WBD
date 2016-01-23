@@ -12,5 +12,6 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     List<Project> findByDeveloper(Developer developer);
-
+    List<Project> findByName(String value);
+    List<Project> findByDeveloper_Id(int id);
 }

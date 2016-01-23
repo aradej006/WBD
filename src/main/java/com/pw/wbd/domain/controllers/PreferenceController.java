@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -41,6 +45,30 @@ public class PreferenceController {
     @RequestMapping(value = "/preferences", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", preferenceRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Preference.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "preference/list";
+    }
+
+    @RequestMapping(value = "/preferences/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<Preference> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(preferenceRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("name")){
+            objects = preferenceRepository.findByName(value);
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Preference.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "preference/list";
     }
 

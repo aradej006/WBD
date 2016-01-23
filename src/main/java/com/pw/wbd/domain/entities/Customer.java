@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by arade on 20-Jan-16.
@@ -37,6 +39,20 @@ public class Customer {
     private String secondname;
     @Size(max = 11)
     private String pesel;
+
+    public static List<String> getAttributes(){
+        List<String> attrs = new LinkedList<>();
+        attrs.add("serviceType");
+        attrs.add("salesType");
+        attrs.add("serviceState");
+        attrs.add("firstname");
+        attrs.add("lastname");
+        attrs.add("email");
+        attrs.add("phone");
+        attrs.add("secondname");
+        attrs.add("pesel");
+        return attrs;
+    }
 
     public Integer getId() {
         return id;

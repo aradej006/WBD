@@ -17,4 +17,7 @@ public interface ValueCustomerTextRepository extends JpaRepository<ValueCustomer
     List<ValueCustomerText> findByPreference(Preference preference);
     List<ValueCustomerText> findByCustomer(Customer customer);
     List<ValueCustomerText> findByCustomerAndPreference(Customer customer, Preference preference);
+    List<ValueCustomerText> findByValue(String value);
+    List<ValueCustomerText> findByPreference_Id(int preference);
+    List<ValueCustomerText> findByCustomer_Id(int customer);
 }

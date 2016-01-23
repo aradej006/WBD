@@ -66,7 +66,7 @@ insert into value_customer_text (id,customer_id,preference_id,value)values(7,2,8
 insert into value_customer_number (id,customer_id,preference_id,value)values(14,2,10,20.0);
 insert into value_customer_number (id,customer_id,preference_id,value)values(15,2,10,200.0);
 
-insert into value_customer_text (id,customer_id,preference_id,value)values(16,5,2,'Nie');
+insert into value_customer_text (id,customer_id,preference_id,value)values(16,1,2,'Nie');
 insert into value_customer_number (id,customer_id,preference_id,value)values(17,1,1,10);
 insert into value_customer_number (id,customer_id,preference_id,value)values(18,1,1,12);
 insert into value_customer_number (id,customer_id,preference_id,value)values(19,1,3,5000.0);

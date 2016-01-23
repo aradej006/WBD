@@ -13,6 +13,21 @@
         <h2>Project List
             <button class="btn btn-default pull-right" onclick="location.href='/project/new'"> Add</button>
         </h2>
+        <div class="form-group">
+            <input id="entity" type="hidden" th:value="projects"/>
+            <div class="col-sm-4">
+                <select id="select" class="form-control">
+                    <option>Select Attribute</option>
+                    <option th:each="b : ${attrs}" th:value="${b}" th:text="${b}"></option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <input class="form-control" id="input" placeholder="Insert Value"/>
+            </div>
+            <div class="col-sm-4">
+                <button class="form-control" onclick="search()"> Search</button>
+            </div>
+        </div>
         <table class="table table-striped" th:if="${not #lists.isEmpty(objects)}">
             <tr>
                 <th>Id</th>

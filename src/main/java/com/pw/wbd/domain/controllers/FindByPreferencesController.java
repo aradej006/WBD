@@ -23,13 +23,13 @@ public class FindByPreferencesController {
 
     @Autowired
     private HouseRepository houseRepository;
-    
+
     @Autowired
     private FlatRepository flatRepository;
-    
+
     @Autowired
     private SegmentRepository segmentRepository;
-    
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -47,19 +47,6 @@ public class FindByPreferencesController {
         model.addAttribute("object", new Developer());
         return "findByPreference/form";
     }
-
-//    @RequestMapping(value = "findByPreference", method = RequestMethod.POST)
-//    public String saveDeveloper(Developer findByPreference) {
-//        findByPreferenceRepository.save(findByPreference);
-//        return "redirect:/findByPreference/get/" + findByPreference.getId();
-//    }
-
-//    @RequestMapping("findByPreference/get/{id}")
-//    public String showDeveloper(@PathVariable Integer id, Model model) {
-//        Developer dev = findByPreferenceRepository.findOne(id);
-//        model.addAttribute("object", dev);
-//        return "findByPreference/show";
-//    }
 
     @RequestMapping(value = "/findByPreferences", method = RequestMethod.GET)
     public String list(Model model) {
@@ -259,19 +246,5 @@ public class FindByPreferencesController {
 
         return "findByPreference/house";
     }
-
-//    @RequestMapping("findByPreference/edit/{id}")
-//    public String edit(@PathVariable Integer id, Model model) {
-//        model.addAttribute("object", findByPreferenceRepository.getOne(id));
-//        return "findByPreference/form";
-//    }
-//
-//    @RequestMapping("findByPreference/delete/{id}")
-//    public String delete(@PathVariable Integer id) {
-//        findByPreferenceRepository.delete(id);
-//        return "redirect:/findByPreferences";
-//    }
-    
-
 
 }

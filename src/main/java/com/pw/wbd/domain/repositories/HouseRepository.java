@@ -16,5 +16,14 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 
     List<House> findByPricePerMeterBetweenAndAreaBetweenAndLandAreaBetweenAndBuilding_District(double startPrice, double endPrice,
                                   double startArea, double endArea,double startLandArea, double endLandArea, String district);
+    List<House> findByLandArea(double value);
+    List<House> findByArea(double value);
+    List<House> findByPricePerMeter(double value);
+    List<House> findByEmployee_Id(int value);
+    List<House> findByGarage(String value);
+    List<House> findByPlayground(String value);
+    List<House> findByState(String value);
+    List<House> findByBuilding_Id(int value);
+    List<House> findByRoomsQuantity(int value);
 
 }

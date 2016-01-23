@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -53,6 +57,40 @@ public class SegmentController {
     @RequestMapping(value = "/segments", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", segmentRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Segment.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "segment/list";
+    }
+
+    @RequestMapping(value = "/segments/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<Segment> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(segmentRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("area")){
+            objects = segmentRepository.findByArea(Double.parseDouble(value));
+        }else if(attribute.equals("roomsQuantity")){
+            objects = segmentRepository.findByRoomsQuantity(Integer.parseInt(value));
+        }else if(attribute.equals("flor")){
+            objects = segmentRepository.findByFlor(Integer.parseInt(value));
+        }else if(attribute.equals("pricePerMeter")){
+            objects = segmentRepository.findByPricePerMeter(Double.parseDouble(value));
+        }else if(attribute.equals("building")){
+            objects = segmentRepository.findByBuilding_Id(Integer.parseInt(value));
+        }else if(attribute.equals("employee")){
+            objects = segmentRepository.findByEmployee_Id(Integer.parseInt(value));
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Segment.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "segment/list";
     }
 

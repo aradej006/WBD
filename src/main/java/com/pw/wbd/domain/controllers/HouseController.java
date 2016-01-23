@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -55,6 +57,42 @@ public class HouseController {
     @RequestMapping(value = "/houses", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", houseRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : House.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "house/list";
+    }
+
+    @RequestMapping(value = "/houses/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<House> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(houseRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("area")){
+            objects = houseRepository.findByArea(Double.parseDouble(value));
+        }else if(attribute.equals("landArea")){
+            objects = houseRepository.findByLandArea(Double.parseDouble(value));
+        }else if(attribute.equals("pricePerMeter")){
+            objects = houseRepository.findByPricePerMeter(Double.parseDouble(value));
+        }else if(attribute.equals("roomsQunatity")){
+            objects = houseRepository.findByRoomsQuantity(Integer.parseInt(value));
+        }else if(attribute.equals("state")){
+            objects = houseRepository.findByState(value);
+        }else if(attribute.equals("building")){
+            objects = houseRepository.findByBuilding_Id(Integer.parseInt(value));
+        }else if(attribute.equals("employee")){
+            objects = houseRepository.findByEmployee_Id(Integer.parseInt(value));
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : House.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "house/list";
     }
 

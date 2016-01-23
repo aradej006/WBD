@@ -16,4 +16,7 @@ public interface ValueCustomerNumberRepository extends JpaRepository<ValueCustom
     List<ValueCustomerNumber> findByPreference(Preference preference);
     List<ValueCustomerNumber> findByCustomer(Customer customer);
     List<ValueCustomerNumber> findByCustomerAndPreference(Customer customer,Preference preference);
+    List<ValueCustomerNumber> findByValue(double value);
+    List<ValueCustomerNumber> findByPreference_Id(int preference);
+    List<ValueCustomerNumber> findByCustomer_Id(int customer);
 }

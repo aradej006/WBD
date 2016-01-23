@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 21-Jan-16.
  */
@@ -61,6 +65,38 @@ public class OfferController {
     @RequestMapping(value = "/offers", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", offerRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Offer.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "offer/list";
+    }
+
+    @RequestMapping(value = "/offers/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<Offer> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(offerRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("employee")){
+            objects = offerRepository.findByEmployee_Id(Integer.parseInt(value));
+        }else if(attribute.equals("flat")){
+            objects = offerRepository.findByFlat_Id(Integer.parseInt(value));
+        }else if(attribute.equals("house")){
+            objects = offerRepository.findByHouse_Id(Integer.parseInt(value));
+        }else if(attribute.equals("type")){
+            objects = offerRepository.findByType(value);
+        }else if(attribute.equals("segment")){
+            objects = offerRepository.findBySegment_Id(Integer.parseInt(value));
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Offer.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "offer/list";
     }
 

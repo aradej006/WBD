@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arade on 19-Jan-16.
  */
@@ -43,6 +47,30 @@ public class DeveloperController {
     @RequestMapping(value = "/developers", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("objects", developerRepository.findAll());
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Developer.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
+        return "developer/list";
+    }
+
+    @RequestMapping(value = "/developers/{attribute}/{value}", method = RequestMethod.GET)
+    public String listFiltered(@PathVariable String attribute, @PathVariable String value, Model model) {
+        List<Developer> objects = new LinkedList<>();
+        if(attribute.equals("id")){
+            objects.add(developerRepository.findOne(Integer.parseInt(value)));
+            if(objects.get(0)==null) objects.remove(0);
+        }else if(attribute.equals("name")){
+            objects = developerRepository.findByName(value);
+        }
+
+        model.addAttribute("objects", objects);
+        List<String> attrs = new LinkedList<>();
+        for (Field field : Developer.class.getDeclaredFields()) {
+            attrs.add(field.getName());
+        }
+        model.addAttribute("attrs", attrs);
         return "developer/list";
     }
 
